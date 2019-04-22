@@ -1,18 +1,16 @@
-drop schema if exists `computer-database-db`;
-create schema if not exists `computer-database-db`;
-use `computer-database-db`;
-
 drop table if exists computer;
 drop table if exists company;
 
+create sequence company_seq start with 44 increment by 1;
 create table company (
-  id                        serial not null,
+  id                        bigint default nextval('company_seq'),
   name                      varchar(255),
   constraint pk_company primary key (id))
 ;
 
+create sequence computer_seq start with 575 increment by 1;
 create table computer (
-  id                        serial not null,
+  id                        bigint default nextval('computer_seq'),
   name                      varchar(255),
   introduced                timestamp NULL,
   discontinued              timestamp NULL,
